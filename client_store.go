@@ -49,7 +49,7 @@ func (s *ClientStore) initIndex() error {
 		return nil
 	}
 
-	_, err = s.client.PutMapping().Index(s.index).BodyString(`
+	_, err = s.client.CreateIndex(s.index).BodyString(`
 		{
           "mappings": {
 		    "properties": {
