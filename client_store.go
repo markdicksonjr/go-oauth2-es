@@ -115,7 +115,7 @@ func (s *ClientStore) Create(info oauth2.ClientInfo) error {
 		return err
 	}
 
-	_, err = s.client.Index().Index(s.index).BodyJson(ClientStoreItem{
+	_, err = s.client.Index().Index(s.index).Id(info.GetID()).BodyJson(ClientStoreItem{
 		ID: info.GetID(),
 		Secret: info.GetSecret(),
 		Domain: info.GetDomain(),
