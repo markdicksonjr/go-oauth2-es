@@ -166,8 +166,8 @@ func (s *TokenStore) Create(info oauth2.TokenInfo) error {
 	}
 
 	// overwrite the times as strings
-	mapVals["created_at"] = item.CreatedAt.Format("2006-01-02 15:04:05") // yyyy-MM-dd HH:mm:ss
-	mapVals["expires_at"] = item.ExpiresAt.Format("2006-01-02 15:04:05") // yyyy-MM-dd HH:mm:ss
+	mapVals["created_at"] = item.CreatedAt.Format("2006-01-02T15:04:05Z07:00") // yyyy-MM-dd HH:mm:ss
+	mapVals["expires_at"] = item.ExpiresAt.Format("2006-01-02T15:04:05Z07:00") // yyyy-MM-dd HH:mm:ss
 
 	// save to ES
 	_, err = s.client.Index().Index(s.index).BodyJson(mapVals).Refresh("wait_for").Do(context.TODO())
