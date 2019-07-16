@@ -249,7 +249,7 @@ func (s *TokenStore) GetByAccess(access string) (oauth2.TokenInfo, error) {
 		return nil, nil
 	}
 
-	var item TokenStoreItem
+	var item TokenStoreItemBase
 
 	res, err := s.client.Search(s.index).Query(elastic.NewTermQuery("access", access)).Size(1).Do(context.TODO())
 	if err != nil {
@@ -278,7 +278,7 @@ func (s *TokenStore) GetByRefresh(refresh string) (oauth2.TokenInfo, error) {
 		return nil, nil
 	}
 
-	var item TokenStoreItem
+	var item TokenStoreItemBase
 
 	res, err := s.client.Search(s.index).Query(elastic.NewTermQuery("refresh", refresh)).Size(1).Do(context.TODO())
 	if err != nil {
